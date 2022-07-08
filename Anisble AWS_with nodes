@@ -59,21 +59,10 @@ vi /etc/ansible/ansible.config
 # the home directory or /etc/ansible/ansible.cfg, whichever it
 # finds first
 
-[defaults]
-
-# some basic default values...
-
 inventory      = /etc/ansible/hosts
-#library        = /usr/share/my_modules/
-#module_utils   = /usr/share/my_module_utils/
-#remote_tmp     = ~/.ansible/tmp
-#local_tmp      = ~/.ansible/tmp
-#plugin_filters_cfg = /etc/ansible/plugin_filters.yml
-#forks          = 5
-#poll_interval  = 15
+
 sudo_user      = root
-#ask_sudo_pass = True
-"ansible.cfg" [readonly] 490L, 19985C
+
 
 }
 
@@ -86,10 +75,3 @@ sudo_user      = root
 
 
 
-
-#Target Webservers 2 & Database Server 1
-
-#Centos for Webservers 2 & Database Server 1
-#diffrent SGs
-#22 from my IP
-#22 from Ubuntu Control machine/tower
