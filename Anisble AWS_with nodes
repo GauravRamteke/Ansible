@@ -1,0 +1,95 @@
+AWS Installation & Setup
+#Ubuntu Control machine/tower
+# User Data
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+
+#Secutity Group
+#22 from my IP
+
+#Node setup
+#In Ansible tower edit host file and ass private IP in it.
+vi /etc/ansible/hosts
+
+{
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+[Groupname]
+Node1 IP
+Node2 IP
+## green.example.com
+## blue.example.com
+## 192.168.100.1
+## 192.168.100.10
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+
+## [webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+"hosts" [readonly] 44L, 1016C
+}
+#Save hosts file
+
+
+#Now update Ansible config file
+vi /etc/ansible/ansible.config
+
+#Make changes to inventory & sudo-user=root
+
+{
+# config file for ansible -- https://ansible.com/
+# ===============================================
+
+# nearly all parameters can be overridden in ansible-playbook
+# or with command line flags. ansible will read ANSIBLE_CONFIG,
+# ansible.cfg in the current working directory, .ansible.cfg in
+# the home directory or /etc/ansible/ansible.cfg, whichever it
+# finds first
+
+[defaults]
+
+# some basic default values...
+
+inventory      = /etc/ansible/hosts
+#library        = /usr/share/my_modules/
+#module_utils   = /usr/share/my_module_utils/
+#remote_tmp     = ~/.ansible/tmp
+#local_tmp      = ~/.ansible/tmp
+#plugin_filters_cfg = /etc/ansible/plugin_filters.yml
+#forks          = 5
+#poll_interval  = 15
+sudo_user      = root
+#ask_sudo_pass = True
+"ansible.cfg" [readonly] 490L, 19985C
+
+}
+
+#Save Ansible config
+
+
+
+
+
+
+
+
+
+#Target Webservers 2 & Database Server 1
+
+#Centos for Webservers 2 & Database Server 1
+#diffrent SGs
+#22 from my IP
+#22 from Ubuntu Control machine/tower
