@@ -1,0 +1,11 @@
+---
+-name: Setup Server
+hosts: server
+tasks:
+  - name: Install install Apache httpd
+    yum:
+        name: httpd
+        state: present
+  - name: httpd
+    state: started
+    enabled: yes
