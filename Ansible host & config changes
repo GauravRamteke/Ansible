@@ -1,0 +1,44 @@
+#Host file changes
+# Default Directory is :   /etc/ansible/hosts
+# You can create your own inventory file
+# create or copy pem file and give "chmod 400 key.pem"
+Add Hostname or ansible_host="Private IP" (now ansible user) anisble_user=centos (now ec2 instance login key file) anisble_ssh_private_key_file=key.pem
+
+#In Host file make these changes
+node1 ansible_host="Private IP" anisble_user=centos anisble_ssh_private_key_file=key.pem
+
+#Now to test
+# ansible - m  ==> module
+# ansible - i inventory ==> if we want tu use our own host file
+ansible - m ping "private ip or hostname"
+
+#Ansible config file changes to login without
+# Path is :   /etc/ansible/anisble.cfg
+# Make changes & uncomment host_key_checking = False
+
+#Now to create groups to run our playbooks groupwise
+# add groupname in brackets [servergrp]
+# add :children in group name if you want to add multiple group in a group
+
+[servergrp]
+Server1
+Server2
+
+[dbserver]
+dbserver
+
+[testgrp:children]
+servergrp
+dbserver
+
+#Now to define Variable in group level
+# use :vars to define variable
+
+[testgrp:vars]
+ansible_user=centos
+anisble_ssh_private_key_file=key.pem
+
+
+
+
+
